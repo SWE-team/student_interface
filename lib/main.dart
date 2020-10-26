@@ -6,7 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'format_list_bulleted',
+      title: 'AMS',
       home: MyHomePage(),
     );
   }
@@ -22,6 +22,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text('AMS'),
+      ),
+      body: new Container(
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+        height: 220,
+        width: double.maxFinite,
+        child: Card(
+          child: new InkWell(onTap: () {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text('Tap'),
+            ));
+          }),
+          elevation: 5,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
