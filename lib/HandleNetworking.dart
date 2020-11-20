@@ -44,7 +44,10 @@ class HandleNetworking
 
     );
     print(response.body);
-    return FutureResponse.fromJson(jsonDecode(response.body));
+    if(response.statusCode == 200 || response.statusCode == 400 || response.statusCode == 500)
+      return FutureResponse.fromJson(jsonDecode(response.body));
+    else
+      return null;
 
 
 
