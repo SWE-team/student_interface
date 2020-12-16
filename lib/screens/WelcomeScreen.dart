@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_interface/components/ReusableButton.dart';
 import 'package:student_interface/screens/LoginScreen.dart';
 import 'package:student_interface/screens/StudentRegisterScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
@@ -36,9 +38,9 @@ class WelcomeScreen extends StatelessWidget {
             GestureDetector(
                 child : ReusableButton('Register'),
                 onTap: (){
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(builder: (context) => StudentRegisterScreen()),
+                    '/register',
                   );
                 },
             ),
@@ -46,9 +48,12 @@ class WelcomeScreen extends StatelessWidget {
             GestureDetector(
                 child: ReusableButton('Login'),
               onTap: (){
-                Navigator.push(
+                Navigator.pushReplacementNamed(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen(msg: ' ')),
+                  '/login',
+                  arguments: {
+                    "msg" : "",
+                  }
                 );
               },
             ),
