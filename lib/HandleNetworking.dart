@@ -1,10 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_interface/AvailableCourses.dart';
-import 'package:student_interface/EnrolledList.dart';
 import 'package:student_interface/Models/FutureResponse.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:student_interface/components/AvailableCourses.dart';
+import 'package:student_interface/components/EnrolledList.dart';
 
 class HandleNetworking {
   final String url2 = "https://ams-swe.herokuapp.com";

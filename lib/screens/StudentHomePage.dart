@@ -33,11 +33,11 @@ class _StudentHomePageState extends State<StudentHomePage> {
                   ])),
       child: Scaffold(
           backgroundColor: Colors.lightBlue[50],
-          appBar: AppBar(
-            backgroundColor: Colors.blueAccent,
-            automaticallyImplyLeading: false,
-            title: Text('AMS'),
-          ),
+          // appBar: AppBar(
+          //   backgroundColor: Colors.blueAccent,
+          //   automaticallyImplyLeading: false,
+          //   title: Text('AMS'),
+          // ),
           body: PageView(
               controller: _pageController,
               physics: new NeverScrollableScrollPhysics(),

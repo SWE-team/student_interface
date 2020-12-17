@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_interface/EnrolledList.dart';
 import 'package:student_interface/HandleNetworking.dart';
+import 'package:student_interface/components/EnrolledList.dart';
 import 'package:student_interface/screens/LoginScreen.dart';
 
 class EnrolledCourses extends StatefulWidget {
@@ -41,27 +41,51 @@ class _EnrolledCoursesState extends State<EnrolledCourses> {
         color: Colors.lightBlue[50],
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: SafeArea(
-          child: FutureBuilder<List<EnrolledList>>(
-            future: enrolledList,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                //if (snapshot.data.length != 0) {
-                print("not Empty ");
+        child: Column(
+          children: [
+            AppBar(
+              automaticallyImplyLeading: false,
+              elevation: 10,
+              backgroundColor: Colors.blueAccent,
+              title: Text("Enrolled Courses", style: TextStyle(fontSize: 25),),
+              toolbarHeight: 65,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * .8,
+              width: MediaQuery.of(context).size.width,
+              child: SafeArea(
+                child: FutureBuilder<List<EnrolledList>>(
+                  future: enrolledList,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      //if (snapshot.data.length != 0) {
+                      print("not Empty ");
 
-                return RefreshIndicator(
-                  child: ListView(
-                    children: snapshot.data,
-                  ),
-                  onRefresh: getCoursesList,
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
+                      return RefreshIndicator(
+                        child: ListView(
+                          children: snapshot.data,
+                        ),
+                        onRefresh: getCoursesList,
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text(
+                          "No Enrolled Courses!",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w300, // light
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      );
+                    }
 
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
+                    return Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
+            ),
+          ],
         ));
   }
 }

@@ -19,8 +19,15 @@ class _settingsState extends State<settings> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
+            AppBar(
+              automaticallyImplyLeading: false,
+              elevation: 10,
+              backgroundColor: Colors.blueAccent,
+              title: Text("Settings", style: TextStyle(fontSize: 25),),
+              toolbarHeight: 65,
+            ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             SettingsSection(
               title: 'Account',
@@ -36,12 +43,11 @@ class _settingsState extends State<settings> {
                   leading: Icon(Icons.fingerprint),
                   onPressed: (BuildContext context) {
                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChangePasswordScreen()),
-                        );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChangePasswordScreen()),
+                    );
                   },
-
                 ),
                 SettingsTile(
                   title: 'Logout',
@@ -70,4 +76,3 @@ class _settingsState extends State<settings> {
         ));
   }
 }
-
