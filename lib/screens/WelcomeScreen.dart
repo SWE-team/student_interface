@@ -5,10 +5,8 @@ import 'package:student_interface/screens/LoginScreen.dart';
 import 'package:student_interface/screens/StudentRegisterScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Center(
         child: Container(
@@ -19,49 +17,45 @@ class WelcomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              SizedBox(
-              height: 155.0,
-              child: Image.asset(
-                "images/logo.jpeg",
-                fit: BoxFit.contain,
-              ),
+                SizedBox(
+                  height: 155.0,
+                  child: Image.asset(
+                    "images/logo.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                SizedBox(height: 45.0),
+                Text(
+                  "AMS for Students",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 35.0),
+                GestureDetector(
+                  child: ReusableButton('Register'),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/register',
+                    );
+                  },
+                ),
+                SizedBox(height: 25.0),
+                GestureDetector(
+                  child: ReusableButton('Login'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/login', arguments: {
+                      "msg": "",
+                    });
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: 45.0),
-            Text(
-              "AMS for Students",
-              style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 35.0),
-            GestureDetector(
-                child : ReusableButton('Register'),
-                onTap: (){
-                  Navigator.pushNamed(
-                    context,
-                    '/register',
-                  );
-                },
-            ),
-            SizedBox(height: 25.0),
-            GestureDetector(
-                child: ReusableButton('Login'),
-              onTap: (){
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/login',
-                  arguments: {
-                    "msg" : "",
-                  }
-                );
-              },
-            ),
-        ],
+          ),
+        ),
       ),
-    ),
-    ),
-    ),
     );
   }
 }

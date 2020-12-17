@@ -8,6 +8,7 @@ import 'package:student_interface/screens/StudentHomePage.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
+  static var studentId;
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -117,12 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             Scaffold.of(context).showSnackBar(SnackBar(
                               content: Text(result.msg),
                             ));
-                            saveValue("status", true);
+                            saveValue("status", true, result.msg.toString());
+                            LoginScreen.studentId = result.msg;
                             print("Logged In");
-                            Navigator.pushReplacementNamed(
-                              context,
-                              StudentHomePage.routeName,
-                            );
+                            Navigator.of(context).pushNamedAndRemoveUntil(StudentHomePage.routeName, (Route<dynamic> route) => false);
+                            
                           }
                         } else {
                           Scaffold.of(context).showSnackBar(SnackBar(
@@ -156,8 +156,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-saveValue(String key, bool value) async {
+saveValue(String key, bool value, String idValue) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   print("set $key as $value");
   prefs.setBool(key, value);
+  prefs.setString("id", idValue);
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:student_interface/HandleNetworking.dart';
+import 'package:student_interface/screens/LoginScreen.dart';
 
 class settings extends StatefulWidget {
   @override
@@ -38,9 +40,21 @@ class _settingsState extends State<settings> {
                   title: 'Logout',
                   leading: Icon(Icons.logout),
                   onPressed: (BuildContext context) {
-                    saveValue("status", false);
-                    //Navigator.pushReplacementNamed(context, '/');
-                    Navigator.popAndPushNamed(context, '/');
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                                title: Text('Are you sure you want to quit?'),
+                                actions: <Widget>[
+                                  RaisedButton(
+                                      child: Text('exit'),
+                                      onPressed: () => Navigator.of(context)
+                                          .pushNamedAndRemoveUntil('/',
+                                              (Route<dynamic> route) => false)),
+                                  RaisedButton(
+                                      child: Text('cancel'),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(false)),
+                                ]));
                   },
                 )
               ],

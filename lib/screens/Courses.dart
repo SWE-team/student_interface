@@ -1,5 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:student_interface/AvailableCourses.dart';
+import 'package:student_interface/HandleNetworking.dart';
 
 class Courses extends StatefulWidget {
   @override
@@ -7,35 +9,43 @@ class Courses extends StatefulWidget {
 }
 
 class _CoursesState extends State<Courses> {
+  @override
+  void initState() {
+    super.initState();
+    getCoursesList();
+  }
 
+  Future<List<AvailableCourses>> coursesList;
+  Future<void> getCoursesList() async {
+    HandleNetworking handleNetworking = HandleNetworking();
+    coursesList = handleNetworking.getAvailableCourses();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.lightBlue[50],
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: SafeArea(
-          child: ListView.builder(
-              itemCount: 5,
-              padding: const EdgeInsets.all(8),
-              itemBuilder: (_, index) {
-                return Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Column(
-                    children: [
-                      Card(
-                        color: Colors.deepPurple,
-                        elevation: 7,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        child: Container(
-                          padding: EdgeInsets.all(50),
-                          height: 152,
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              }),
-        ));
+      color: Colors.lightBlue[50],
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: SafeArea(
+          child: FutureBuilder<List<AvailableCourses>>(
+        future: coursesList,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return RefreshIndicator(
+              child: ListView(
+                children: snapshot.data,
+              ),
+              onRefresh: getCoursesList,
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+          return Center(child: CircularProgressIndicator());
+        },
+      )),
+    );
   }
 }
