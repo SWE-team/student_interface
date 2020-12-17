@@ -2,7 +2,7 @@
 
 <img src="images/flutter.png" height="100" >
 
-An android app for student to manage course and see attendance of enrolled course.
+An android app for student to manage course and see attendance of enrolled courses.
 
 # Screenshots
 
