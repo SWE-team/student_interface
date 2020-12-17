@@ -1,16 +1,19 @@
-# student_interface
+# AMS Student Portal
 
-A new Flutter project.
+<img src="images/flutter.png" height="100" >
 
-## Getting Started
+An android app for student to manage course and see attendance of enrolled course.
 
-This project is a starting point for a Flutter application.
+# Screenshots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align="center">
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0013.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0011.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0012.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0014.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0001.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0015.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201217-WA0030.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201218-WA0016.jpg" width=250 height=550>
+<img src="https://github.com/SWE-team/student_interface/blob/master/images/IMG-20201217-WA0029.jpg" width=250 height=550>
+</p>
