@@ -5,6 +5,7 @@ import 'package:student_interface/HandleNetworking.dart';
 import 'package:student_interface/Models/FutureResponse.dart';
 import 'package:student_interface/components/ReusableButton.dart';
 import 'package:student_interface/screens/StudentHomePage.dart';
+import 'package:student_interface/screens/changePasswordScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -121,8 +122,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             saveValue("status", true, result.msg.toString());
                             LoginScreen.studentId = result.msg;
                             print("Logged In");
-                            Navigator.of(context).pushNamedAndRemoveUntil(StudentHomePage.routeName, (Route<dynamic> route) => false);
-                            
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                StudentHomePage.routeName,
+                                (Route<dynamic> route) => false);
                           }
                         } else {
                           Scaffold.of(context).showSnackBar(SnackBar(
@@ -133,6 +135,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     );
                   }),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChangePasswordScreen()),
+                        );
+                      },
+                      child: Text(
+                        'Forget Password',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 18.0),

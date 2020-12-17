@@ -51,6 +51,28 @@ class HandleNetworking {
       return null;
   }
 
+  Future<FutureResponse> resetPassword(String studentEmail,String newPassword) async {
+
+    final http.Response response = await http.post(
+        "https://signin-rest-api.herokuapp.com/student/resetPassword",
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'email': studentEmail,
+          'password': newPassword,
+        })
+
+    );
+    print(response.body);
+    if(response.statusCode == 200 || response.statusCode == 400 || response.statusCode == 500)
+      return FutureResponse.fromJson(jsonDecode(response.body));
+    else
+      return null;
+
+
+  }
+
   Future<List<AvailableCourses>> getAvailableCourses() async {
     final http.Response response = await http.get(url2 + "/api/student/all");
 

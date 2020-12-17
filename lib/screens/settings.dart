@@ -3,6 +3,7 @@ import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_interface/HandleNetworking.dart';
 import 'package:student_interface/screens/LoginScreen.dart';
+import 'package:student_interface/screens/changePasswordScreen.dart';
 
 class settings extends StatefulWidget {
   @override
@@ -30,11 +31,17 @@ class _settingsState extends State<settings> {
                   leading: Icon(Icons.language),
                   onPressed: (BuildContext context) {},
                 ),
-                SettingsTile.switchTile(
+                SettingsTile(
                   title: 'Reset Password',
                   leading: Icon(Icons.fingerprint),
-                  switchValue: false,
-                  onToggle: (bool value) {},
+                  onPressed: (BuildContext context) {
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChangePasswordScreen()),
+                        );
+                  },
+
                 ),
                 SettingsTile(
                   title: 'Logout',
@@ -64,8 +71,3 @@ class _settingsState extends State<settings> {
   }
 }
 
-saveValue(String key, bool value) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  print("set $key as $value");
-  prefs.setBool(key, value);
-}
