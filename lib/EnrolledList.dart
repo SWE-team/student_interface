@@ -37,7 +37,7 @@ class EnrolledList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: Icon(Icons.account_circle_rounded),
+        leading: Icon(Icons.library_books),
         title: Text(id),
         subtitle: Text(name),
         trailing: CircularPercentIndicator(

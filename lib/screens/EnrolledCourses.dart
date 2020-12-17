@@ -41,27 +41,45 @@ class _EnrolledCoursesState extends State<EnrolledCourses> {
         color: Colors.lightBlue[50],
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: SafeArea(
-          child: FutureBuilder<List<EnrolledList>>(
-            future: enrolledList,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                //if (snapshot.data.length != 0) {
-                print("not Empty ");
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.blueAccent,
+              automaticallyImplyLeading: false,
+              title: Text(
+                'Enrolled Courses',
+                style: TextStyle(fontSize: 25),
+              ),
+              toolbarHeight: 65,
+              elevation: 10,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * .8,
+              width: MediaQuery.of(context).size.width,
+              child: SafeArea(
+                child: FutureBuilder<List<EnrolledList>>(
+                  future: enrolledList,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      //if (snapshot.data.length != 0) {
+                      print("not Empty ");
 
-                return RefreshIndicator(
-                  child: ListView(
-                    children: snapshot.data,
-                  ),
-                  onRefresh: getCoursesList,
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
+                      return RefreshIndicator(
+                        child: ListView(
+                          children: snapshot.data,
+                        ),
+                        onRefresh: getCoursesList,
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
 
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
+                    return Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
+            ),
+          ],
         ));
   }
 }

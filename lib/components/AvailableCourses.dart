@@ -57,7 +57,7 @@ class AvailableCourses extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 7.0, top: 7.0),
               );
               Scaffold.of(context).showSnackBar(newSnackbar);
-            } else if (value != null) {
+            } else if(value!=null){
               SnackBar newSnackbar = SnackBar(
                 content: Text("Error: " + enrollStatus.toString()),
                 padding: EdgeInsets.only(bottom: 7.0, top: 7.0),
@@ -70,3 +70,4 @@ class AvailableCourses extends StatelessWidget {
     );
   }
 }
+

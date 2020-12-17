@@ -51,8 +51,8 @@ class HandleNetworking {
       return null;
   }
 
-  Future<FutureResponse> resetPassword(String studentEmail,String newPassword) async {
-
+  Future<FutureResponse> resetPassword(
+      String studentEmail, String newPassword) async {
     final http.Response response = await http.post(
         "https://signin-rest-api.herokuapp.com/student/resetPassword",
         headers: <String, String>{
@@ -61,16 +61,14 @@ class HandleNetworking {
         body: jsonEncode(<String, dynamic>{
           'email': studentEmail,
           'password': newPassword,
-        })
-
-    );
+        }));
     print(response.body);
-    if(response.statusCode == 200 || response.statusCode == 400 || response.statusCode == 500)
+    if (response.statusCode == 200 ||
+        response.statusCode == 400 ||
+        response.statusCode == 500)
       return FutureResponse.fromJson(jsonDecode(response.body));
     else
       return null;
-
-
   }
 
   Future<List<AvailableCourses>> getAvailableCourses() async {
@@ -116,11 +114,15 @@ class HandleNetworking {
       int i = 0;
 
       while (i < length) {
-        enrolled.add(EnrolledList(jsonRes['Id'][i], jsonRes['names'][i],
-            jsonRes['attendance'][i].toDouble()));
+        var attendance = jsonRes['attendance'][i];
+        if (attendance == null) {
+          attendance = 0;
+        }
+        enrolled.add(EnrolledList(
+            jsonRes['Id'][i], jsonRes['names'][i], attendance.toDouble()));
         i++;
       }
-      print(enrolled[0]);
+      print(jsonRes['attendance'][0].toDouble());
       return enrolled;
     } else {
       throw Exception('Failed to get available courses');
