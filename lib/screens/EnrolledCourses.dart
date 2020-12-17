@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_interface/EnrolledList.dart';
 import 'package:student_interface/HandleNetworking.dart';
+import 'package:student_interface/components/EnrolledList.dart';
 import 'package:student_interface/screens/LoginScreen.dart';
 
 class EnrolledCourses extends StatefulWidget {
@@ -41,17 +41,17 @@ class _EnrolledCoursesState extends State<EnrolledCourses> {
         color: Colors.lightBlue[50],
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: ListView(
           children: [
             AppBar(
-              backgroundColor: Colors.blueAccent,
               automaticallyImplyLeading: false,
+              elevation: 10,
+              backgroundColor: Colors.blueAccent,
               title: Text(
-                'Enrolled Courses',
+                "Enrolled Courses",
                 style: TextStyle(fontSize: 25),
               ),
               toolbarHeight: 65,
-              elevation: 10,
             ),
             Container(
               height: MediaQuery.of(context).size.height * .8,
@@ -71,7 +71,16 @@ class _EnrolledCoursesState extends State<EnrolledCourses> {
                         onRefresh: getCoursesList,
                       );
                     } else if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
+                      return Center(
+                        child: Text(
+                          "No Enrolled Courses!",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w300, // light
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      );
                     }
 
                     return Center(child: CircularProgressIndicator());

@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:student_interface/AvailableCourses.dart';
 import 'package:student_interface/HandleNetworking.dart';
+import 'package:student_interface/components/AvailableCourses.dart';
 
 class Courses extends StatefulWidget {
   @override
@@ -28,13 +28,16 @@ class _CoursesState extends State<Courses> {
       color: Colors.lightBlue[50],
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: Column(
+      child: ListView(
         children: [
           AppBar(
-            backgroundColor: Colors.blueAccent,
             automaticallyImplyLeading: false,
             elevation: 10,
-            title: Text('Available Courses', style: TextStyle(fontSize: 25),),
+            backgroundColor: Colors.blueAccent,
+            title: Text(
+              "Available Courses",
+              style: TextStyle(fontSize: 25),
+            ),
             toolbarHeight: 65,
           ),
           Container(
