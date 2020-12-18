@@ -23,7 +23,10 @@ class _settingsState extends State<settings> {
               automaticallyImplyLeading: false,
               elevation: 10,
               backgroundColor: Colors.blueAccent,
-              title: Text("Settings", style: TextStyle(fontSize: 25),),
+              title: Text(
+                "Settings",
+                style: TextStyle(fontSize: 25),
+              ),
               toolbarHeight: 65,
             ),
             SizedBox(
@@ -60,9 +63,14 @@ class _settingsState extends State<settings> {
                                 actions: <Widget>[
                                   RaisedButton(
                                       child: Text('exit'),
-                                      onPressed: () => Navigator.of(context)
-                                          .pushNamedAndRemoveUntil('/',
-                                              (Route<dynamic> route) => false)),
+                                      onPressed: () {
+                                        saveValue("status", false);
+                                        Navigator.of(context)
+                                            .pushNamedAndRemoveUntil(
+                                                '/',
+                                                (Route<dynamic> route) =>
+                                                    false);
+                                      }),
                                   RaisedButton(
                                       child: Text('cancel'),
                                       onPressed: () =>
@@ -75,4 +83,10 @@ class _settingsState extends State<settings> {
           ],
         ));
   }
+}
+
+saveValue(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  print("set $key as $value");
+  prefs.setBool(key, value);
 }
